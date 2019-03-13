@@ -11,13 +11,20 @@ module.exports = {
     },
 
     module: {
+        noParsew: /jquery|loadash/, // 不需要解析的依赖模块
         rules: [
             {
-                test: /\.jsx?/,
+                enforce: 'pre', // 指定未前置类型
+                test: /\.js/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader'
+            },
+            {
+                test: /\.jsx?/, // 条件
                 include: [
                     path.resolve(__dirname, 'src'),
-                ],
-                use: 'babel-loader',
+                ], // 条件
+                use: 'babel-loader', // 规则应用结果
             },
             {
                 test: /\.less$/,
@@ -49,6 +56,7 @@ module.exports = {
         ],
 
         extensions: ['.wasm', '.mjs', '.js', '.json', '.jsx'],
+        // 匹配后缀的优先级
     },
 
     plugins: [
@@ -57,5 +65,13 @@ module.exports = {
             template: 'src/index.html', // 配置文件模板
         }),
         new ExtractTextPlugin('[name].css'),
+        new HtmlWebpackPlugin.DefinePlugin({// 配置一些全局常量
+            PRODUCTION: JSON.stringify(true),
+            VERSION: JSON.stringify('23avb45'),
+            BROWSER_SUPPORT_HTML: true,
+            CONSTANTS: {
+                APP_VERSION: JSON.stringify('1.1.2')
+            }
+        })
     ],
 };
