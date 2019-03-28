@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode production",
+    "dev": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -29,5 +30,8 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "eslint-loader": "^2.1.2",
+    "webpack-dev-middleware": "^3.6.1"
+  }
 }
