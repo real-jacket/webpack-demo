@@ -1,4 +1,4 @@
-require('./index.less');
+import './index.less';
 // const { log } = require('./utils');
 console.log('hello world');
 
@@ -12,11 +12,11 @@ console.log('hello world');
 console.log('Production log');
 // }
 
-document.querySelector('#demo').textContent = '这是一个测试';
-if (module.hot) {
-  module.hot.accept('./print.js', function() {
-    console.log('Accepting the updated printMe module!');
-    // eslint-disable-next-line no-undef
-    printMe();
-  });
-}
+document.querySelector('#demo').textContent = '一个测试';
+// if (module.hot) {
+//   module.hot.accept('./print.js', function() {
+//     console.log('Accepting the updated printMe module!');
+//     // eslint-disable-next-line no-undef
+//     printMe();
+//   });
+// }

@@ -32,6 +32,9 @@
   },
   "dependencies": {
     "eslint-loader": "^2.1.2",
+    "image-webpack-loader": "^4.6.0",
+    "lodash": "^4.17.11",
+    "url-loader": "^1.1.2",
     "webpack-dev-middleware": "^3.6.1",
     "webpack-merge": "^4.2.1"
   }
