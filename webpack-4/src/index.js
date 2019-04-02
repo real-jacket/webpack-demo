@@ -1,5 +1,7 @@
 import './index.less';
 const { log } = require('./utils');
+import { cube } from './math.js';
+
 log('hello world');
 
 // eslint-disable-next-line no-undef
@@ -27,3 +29,16 @@ log('Production log');
 import(/* webpackChunkName: "lodash" */ 'lodash').then((_) => {
     console.log(_.lash([1, 2, 3])) // 打印 3
   })
+
+function component() {
+  var element = document.createElement('pre');
+
+  element.innerHTML = [
+    'Hello webpack!',
+    '5 cubed is equal to ' + cube(5)
+  ].join('\n\n');
+
+  return element;
+}
+
+document.body.appendChild(component());

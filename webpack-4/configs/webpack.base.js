@@ -13,11 +13,25 @@ module.exports = {
   },
 
   resolve: {
+    modules: [
+      path.resolve(__dirname, 'node_modules'), // 使用绝对路径指定 node_modules,不做过多查询
+    ],
+    // 删除不必要的后缀自动补全，少了文件后缀的自动匹配，即减少了文件路径查询的工作
+    // 其他文件可以在编码时指定后缀，如 import('./index.scss')
 
+    extensions: ['.js'],
+
+    // 避免新增默认文件，编码时注意使用详细的文件路径，代码会更容易解读，也有益于提高构建速度
+    mainFiles: ['index'],
   },
   module: {
     rules: [{
-      test: /.\js$/,
+      test: /.\jsx?/,
+      include: [
+        path.resolve(__dirname, 'src')
+        // 限定只在 src 目录下的 js/jsx 文件需要经过 bable-loader 处理
+        // 通常我们需要 loader 处理文件都是存放在 src 目录
+      ],
       use: ['babel-loader'],
     },
     {
