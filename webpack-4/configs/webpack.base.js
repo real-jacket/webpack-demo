@@ -8,7 +8,8 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].js',
+    filename: '[name].[hash:8].js',
+    chunkFilename: '[name].[hash:8].js'
   },
 
   resolve: {
@@ -69,16 +70,22 @@ module.exports = {
     },
     ]
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all', // 所有的 chunks 代码公共的部分分离出来成为一个单独的文件
+    }
+  },
   plugins: [
     new ExtractTextPlugin('[name].css'),
     new webpack.NamedModulesPlugin(), // 用于启动 HMR 时可以显示模块的相对路径
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html', // 配置输出文件名和路径
-      template: './src/index.html', // 配置文件模板
+      template: 'src/index.html', // 配置文件模板
       minify: {// 压缩HTML的配置
         minifyCSS: true, // 压缩 HTML 中出现的 CSS 代码
-        minifyJS: true// 压缩 HTML 中出现的 JS 代码
+        minifyJS: true, // 压缩 HTML 中出现的 JS 代码
+        removeComments: true,
       }
     }),
   ],
